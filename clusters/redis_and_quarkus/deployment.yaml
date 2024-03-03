@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: my-redis
-  namespace: development
+  namespace: redis
   labels:
     app: my-redis
 spec:
@@ -29,36 +29,14 @@ apiVersion: v1
 kind: Service
 metadata:
   name: my-redis
-  namespace: development
+  namespace: redis
 spec:
-  type: ClusterIP
+  type: NodePort
   selector:
     app: my-redis
   ports:
     - name: my-redis-port
       protocol: TCP
       port: 6379
+      nodePort: 30221
       targetPort: my-redis
-
-    # - port: 8080
-    #   name: http
-#---
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: quarkus-application
-#   namespace: development
-#   annotations:
-#     nginx.ingress.kubernetes.io/rewrite-target: ""
-# spec:
-#   ingressClassName: nginx
-#   rules:
-#     - http:
-#         paths:
-#           - path: /
-#             pathType: Prefix
-#             backend:
-#               service:
-#                 name: quarkus-application
-#                 port:
-#                   number: 8080
