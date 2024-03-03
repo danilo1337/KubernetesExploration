@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-redis
+  namespace: development
+  labels:
+    app: my-redis
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-redis
+  template:
+    metadata:
+      labels:
+        app: my-redis
+    spec:
+      containers:
+        - name: my-redis
+          image: redis:alpine
+          env:
+            - name: TESTE
+              value: VALUE_TESTE
+          ports:
+            - containerPort: 6379
+              name: my-redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-redis
+  namespace: development
+spec:
+  type: ClusterIP
+  selector:
+    app: my-redis
+  ports:
+    - name: my-redis-port
+      protocol: TCP
+      port: 6379
+      targetPort: my-redis
+
+    # - port: 8080
+    #   name: http
+#---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: quarkus-application
+#   namespace: development
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: ""
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: quarkus-application
+#                 port:
+#                   number: 8080

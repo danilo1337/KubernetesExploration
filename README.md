@@ -35,22 +35,3 @@ kubectl apply -f deployment.yaml
 # teste application http://localhost:30220/
 
 ```
-
-
-
-
-``` text
-         ,;;;,
-       ;;;;;;;;
-     ;;;;;;;;;;;;
-    ;;;/\;;;;;;;;;
-   ;;;     `,\;;;;;
-  ;;;(        `,\;;
- ;;;(           `,\       # Danilo Ribeiro
- ;;;(           ,;'\      # Software Developer
- `;;(        ,;'';;;\     # Linkedin: danilo1337
-  `;;;\    ,;;' ;;;;\     
-    `;;;,;;'    \;;;;
-      `;;'       \;;;
-                  \;
-```
